@@ -15,9 +15,4 @@ export class UiSidebarLeftComponent implements OnInit {
   myMouseClicked() {
     this.engServ.startBoxAnimation();
   }
-
-  myMouseClickedCallback(){
-    this.engServ.startBoxAnimationWithCallbacks();
-  }
-
 }

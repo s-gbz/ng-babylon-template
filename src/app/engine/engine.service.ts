@@ -78,26 +78,6 @@ export class EngineService {
     // console.log("boxClose: ", boxClose);
   }
 
-  public startBoxAnimationWithCallbacks() {
-    const boxOpen = this.scene.animationGroups[0].start().onAnimationEndObservable;
-    let boxClose;
-    let emptyFall;
-
-    boxOpen.add(() => {
-      console.log("boxOpen done");
-      emptyFall = this.scene.animationGroups[2].start().onAnimationEndObservable;
-
-      emptyFall.add(() => {
-        console.log("emptyFall done");
-        boxClose = this.scene.animationGroups[1].start().onAnimationEndObservable;
-
-        emptyFall.add(() => {
-          console.log("boxClose done");
-        });
-      });
-    });
-  }
-
   public animate(): void {
     // We have to run this outside angular zones,
     // because it could trigger heavy changeDetection cycles.
