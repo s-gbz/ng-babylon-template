@@ -12,7 +12,14 @@ export class UiSidebarLeftComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  textInput: string = "";
+
   myMouseClicked() {
     this.engServ.startBoxAnimation();
+  }
+
+  onTextChange(textInput: string) {
+    console.log("new text input: ", textInput);
+    this.engServ.createTextWithDynamicTexture(textInput);
   }
 }

@@ -93,7 +93,7 @@ export class EngineService {
     });
   }
 
-  public createTextWithDynamicTexture() {
+  public createTextWithDynamicTexture(textInput?: string) {
     const emptyMesh = this.scene.getMeshByName("EMPTY");
     const boxMesh = this.scene.getMeshByName("box");
 
@@ -112,7 +112,15 @@ export class EngineService {
     const DTWidth = planeWidth * 20;
     const DTHeight = planeHeight * 20;
 
-    const text = "Hello! 👋";
+    let text: string;
+    
+    if (textInput) {
+      text = textInput;
+      console.log("textInput accepted");
+      
+    } else {
+      text = "Hello! 👋";
+    }
 
     const dynamicTexture = new DynamicTexture("DynamicTexture", { width: DTWidth, height: DTHeight }, this.scene, false);
 
