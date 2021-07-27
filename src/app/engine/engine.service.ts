@@ -18,7 +18,20 @@ import {
   AnimationGroup,
 } from '@babylonjs/core';
 import "@babylonjs/loaders/glTF";
-import { start } from 'repl';
+
+// Es erscheint das erste 'H'. Danach:
+// TypeError: I.addQuadraticCurveTo is not a function
+import MeshWriter from 'src/assets/meshwriter.min.js';
+
+// TypeError: w.StandardMaterial is not a constructor
+// import MeshWriter from 'node_modules/meshwriter/dist/meshwriter.min.js'
+
+// TypeError: w.StandardMaterial is not a constructor
+// import MeshWriter from 'meshwriter';
+
+import * as BABYLON from '@babylonjs/core';
+(window as any).BABYLON = BABYLON;
+
 
 @Injectable({ providedIn: 'root' })
 export class EngineService {
@@ -51,6 +64,7 @@ export class EngineService {
         this.scene.stopAllAnimations();
 
         this.startBoxAnimation();
+        this.createTextMesh();
       }).catch(result => {
         console.log("SceneLoader FAILED, result: ", result);
       });
@@ -70,6 +84,33 @@ export class EngineService {
     emptyFall.onAnimationEndObservable.add(() => boxClose.start())
     boxClose.onAnimationEndObservable.add(() => {
 
+    });
+  }
+
+  public createTextMesh() {
+    console.log("createTextMesh");
+    console.log("MeshWriter", MeshWriter);
+
+    let Writer = MeshWriter(this.scene, { scale: .25, defaultFont: "Arial" });
+    console.log("Writer", Writer);
+    
+    let textMesh = new Writer("Hello World", {
+      "font-family": "Arial",
+      "letter-height": 30,
+      "letter-thickness": 12,
+      color: "#1C3870",
+      anchor: "center",
+      colors: {
+        diffuse: "#F0F0F0",
+        specular: "#000000",
+        ambient: "#F0F0F0",
+        emissive: "#ff00f0"
+      },
+      position: {
+        x: 0,
+        y: 10,
+        z: 0
+      }
     });
   }
 
