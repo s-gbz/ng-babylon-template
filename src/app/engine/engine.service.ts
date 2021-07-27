@@ -64,7 +64,6 @@ export class EngineService {
     const boxClose = this.scene.getAnimationGroupByName("box_close");
     const emptyFall = this.scene.getAnimationGroupByName("empty_falling");
 
-    // boxOpen.start();
     boxOpen.play();
 
     boxOpen.onAnimationEndObservable.add(() => emptyFall.start());
@@ -72,10 +71,6 @@ export class EngineService {
     boxClose.onAnimationEndObservable.add(() => {
 
     });
-
-    // console.log("boxOpen: ", boxOpen);
-    // console.log("emptyFall: ", emptyFall);
-    // console.log("boxClose: ", boxClose);
   }
 
   public animate(): void {
