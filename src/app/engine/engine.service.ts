@@ -38,6 +38,7 @@ import * as BABYLON from '@babylonjs/core';
 
 @Injectable({ providedIn: 'root' })
 export class EngineService {
+
   private canvas: HTMLCanvasElement;
   private engine: Engine;
   private camera;
@@ -203,5 +204,9 @@ export class EngineService {
         this.engine.resize();
       });
     });
+  }
+
+  public printCameraInformation() {
+    console.log("printCameraInformation: ", this.camera);
   }
 }
