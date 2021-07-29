@@ -109,8 +109,8 @@ export class EngineService {
     const plane = MeshBuilder.CreatePlane("plane", { width: planeWidth, height: planeHeight }, this.scene);
 
     //Set width and height for dynamic texture using same multiplier
-    const DTWidth = planeWidth * 20;
-    const DTHeight = planeHeight * 20;
+    const DTWidth = planeWidth * 200;
+    const DTHeight = planeHeight * 200;
 
     let text: string;
     
@@ -126,6 +126,7 @@ export class EngineService {
 
     //Check width of text for given font type at any size of font
     const ctx = dynamicTexture.getContext();
+    ctx.clearRect(0, 0, DTWidth, DTHeight);
     const size = 11; //any value will work
     ctx.font = size + "px " + font_type;
     const textWidth = ctx.measureText(text).width;
